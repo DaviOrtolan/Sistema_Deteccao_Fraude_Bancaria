@@ -95,6 +95,23 @@ public class DeteccaoDeFraudeBancaria {
 	public void treinarModelo() throws Exception {
 		classificador = new J48(); // Cria o modelo de decisão chamado J48 (método matemático)
 		classificador.buildClassifier(dadosTreinamento); // Treina o modelo com os dados fornecidos
+	}
+	
+	// ETAPA 6: CLASSIFICAÇÃO DE NOVAS TRANSAÇÕES
+	public String classificarTransacao(double valor, String origem) throws Exception {
+		// Cria uma nova transação para prever se é fraude ou não 
+		Instance novaInstancia = new DenseInstance(dadosTreinamento.numAttributes());
+		novaInstancia.setDataset(dadosTreinamento);
+		novaInstancia.setValue(atributoValor, valor);
+		novaInstancia.setValue(atributoOrigem, origem);
 		
+		// Pedir para o classificador prever se a nova transação é fraude ou não.
+		// o resultado será: 0.0 (não é fraude) ou 1.0 (é fraude) conforme o treinamento.
+		double previsao = classificador.classifyInstance(novaInstancia);
+		// Obs: classifyInstance retorna número decimal pois usa o mesmo método para prever
+		// classes e números.
+		
+		// Transformar o número previsto em texto (ex: 0 = "nao", 1 = "sim") e monta a resposta final
+		return "Fraude: " + dadosTreinamento.classAttribute().value((int) previsao);
 	}
 }
