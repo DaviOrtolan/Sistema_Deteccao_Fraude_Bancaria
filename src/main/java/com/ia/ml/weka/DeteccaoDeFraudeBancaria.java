@@ -67,4 +67,27 @@ public class DeteccaoDeFraudeBancaria {
 		instancia.setValue(atributoFraude, fraude);
 		dadosTreinamento.add(instancia);
 	}
+	
+	// ETAPA 4: ADIÇÃO DE EXEMPLOS (dados de treino para o modelo aprender)
+	public void adicionarExemplos() {
+		// Exemplos de transações fraudulentas (valores altos + origem internacional)
+		adicionarTransacao(5000, "internacional", "sim");
+		adicionarTransacao(10000, "internacional", "sim");
+		adicionarTransacao(7000, "internacional", "sim");
+		adicionarTransacao(8000, "internacional", "sim");
+		
+		// Exemplos de transações válidas (valores baixos + origem nacional)
+		adicionarTransacao(200, "nacional", "nao");
+		adicionarTransacao(150, "nacional", "nao");
+		adicionarTransacao(300, "nacional", "nao");
+		adicionarTransacao(400, "nacional", "nao");
+		
+		// Exemplos adicionais:
+		// transações com valores médio/altos em território nacional
+		// Pode ser usado para demonstrar variação ou desafiar o modelo
+		
+		// adicionarTransacao(1000, "nacional", "sim");
+		// adicionarTransacao(1500, "nacional", "sim");
+		// adicionarTransacao(20000, "nacional", "sim");
+	}
 }
