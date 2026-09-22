@@ -51,4 +51,20 @@ public class DeteccaoDeFraudeBancaria {
 		// Define o último atributo ("fraude") como classe alvo para previsão.
 		dadosTreinamento.setClassIndex(dadosTreinamento.numAttributes() - 1);
 	}
+	
+	// Método auxiliar para criar e adicionar uma nova transação ao dataset de treino.
+	// Significa que será criada uma nova instância de dados (uma linha),
+	// com a mesma quantidade de colunas (atributos) do dataset dadosTreinamento.
+	private void adicionarTransacao(double valor, String origem, String fraude) {
+		Instance instancia = new DenseInstance(dadosTreinamento.numAttributes());
+		// setDataset(...) é uma configuração obrigatória que diz a instância:
+		// "Você vai seguir a mesma estrutura do dataset - os mesmos atributos,
+		// na mesma ordem e com os mesmos tipos de dados."
+		instancia.setDataset(dadosTreinamento);
+		
+		instancia.setValue(atributoValor, valor);
+		instancia.setValue(atributoOrigem, origem);
+		instancia.setValue(atributoFraude, fraude);
+		dadosTreinamento.add(instancia);
+	}
 }
