@@ -114,4 +114,50 @@ public class DeteccaoDeFraudeBancaria {
 		// Transformar o número previsto em texto (ex: 0 = "nao", 1 = "sim") e monta a resposta final
 		return "Fraude: " + dadosTreinamento.classAttribute().value((int) previsao);
 	}
+	
+	// TESTE COMPLETO DO PROCESSO DE MACHINE LEARNING
+	public static void main(String args[]) {
+		// Oculta avisos sobre bibliotecas nativas (não afeta o código)
+		Logger.getLogger("com.github.fommil.netlib").setLevel(Level.SEVERE);
+		
+		// Criação do detector
+		DeteccaoDeFraudeBancaria detector = new DeteccaoDeFraudeBancaria();
+		
+		try {
+			// ETAPA 2 - Definir Atributos
+			detector.definirAtributos();
+			
+			// ETAPA 4 - Adicionar Exemplos
+			detector.adicionarExemplos();
+			
+			// ETAPA 5 - Treinar o modelo
+			detector.treinarModelo();
+			
+			// ETAPA 6 - Classificar novas transações
+			String resultado1 = detector.classificarTransacao(5000, "internacional");
+			String resultado2 = detector.classificarTransacao(200, "nacional");
+			String resultado3 = detector.classificarTransacao(1000, "internacional");
+			String resultado4 = detector.classificarTransacao(150, "nacional");
+			String resultado5 = detector.classificarTransacao(7500, "internacional");
+			String resultado6 = detector.classificarTransacao(300, "nacional");
+			String resultado7 = detector.classificarTransacao(8000, "internacional");
+			String resultado8 = detector.classificarTransacao(400, "nacional");
+			
+			// String resultado9 = detector.classificarTransacao(1000, "nacional");
+			
+			// Impressão dos resultados
+			System.out.println("Teste1: " + resultado1);
+			System.out.println("Teste2: " + resultado2);
+			System.out.println("Teste3: " + resultado3);
+			System.out.println("Teste4: " + resultado4);
+			System.out.println("Teste5: " + resultado5);
+			System.out.println("Teste6: " + resultado6);
+			System.out.println("Teste7: " + resultado7);
+			System.out.println("Teste8: " + resultado8);
+			// System.out.println("Teste9: " + resultado9);
+			
+		} catch (Exception e) {
+			System.out.println("Erro ao classificar a transação: " + e.getMessage()t);
+		}
+	}
 }
