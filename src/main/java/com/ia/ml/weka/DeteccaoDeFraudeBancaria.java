@@ -86,9 +86,9 @@ public class DeteccaoDeFraudeBancaria {
 		// transações com valores médio/altos em território nacional
 		// Pode ser usado para demonstrar variação ou desafiar o modelo
 		
-		// adicionarTransacao(1000, "nacional", "sim");
-		// adicionarTransacao(1500, "nacional", "sim");
-		// adicionarTransacao(20000, "nacional", "sim");
+		adicionarTransacao(1000, "nacional", "sim");
+		adicionarTransacao(1500, "nacional", "sim");
+		adicionarTransacao(20000, "nacional", "sim");
 	}
 	
 	// ETAPA 5: TREINAMENTO DO MODELO
@@ -143,7 +143,8 @@ public class DeteccaoDeFraudeBancaria {
 			String resultado7 = detector.classificarTransacao(8000, "internacional");
 			String resultado8 = detector.classificarTransacao(400, "nacional");
 			
-			String resultado9 = detector.classificarTransacao(1000, "nacional");
+			String resultado9 = detector.classificarTransacao(401, "nacional");
+			String resultado10 = detector.classificarTransacao(401, "internacional");
 			
 			// Impressão dos resultados
 			System.out.println("Teste1: " + resultado1);
@@ -155,6 +156,7 @@ public class DeteccaoDeFraudeBancaria {
 			System.out.println("Teste7: " + resultado7);
 			System.out.println("Teste8: " + resultado8);
 			System.out.println("Teste9: " + resultado9);
+			System.out.println("Teste10: " + resultado10);
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao classificar a transação: " + e.getMessage());
