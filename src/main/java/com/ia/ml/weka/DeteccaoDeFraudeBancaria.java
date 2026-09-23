@@ -143,7 +143,7 @@ public class DeteccaoDeFraudeBancaria {
 			String resultado7 = detector.classificarTransacao(8000, "internacional");
 			String resultado8 = detector.classificarTransacao(400, "nacional");
 			
-			// String resultado9 = detector.classificarTransacao(1000, "nacional");
+			String resultado9 = detector.classificarTransacao(1000, "nacional");
 			
 			// Impressão dos resultados
 			System.out.println("Teste1: " + resultado1);
@@ -154,10 +154,10 @@ public class DeteccaoDeFraudeBancaria {
 			System.out.println("Teste6: " + resultado6);
 			System.out.println("Teste7: " + resultado7);
 			System.out.println("Teste8: " + resultado8);
-			// System.out.println("Teste9: " + resultado9);
+			System.out.println("Teste9: " + resultado9);
 			
 		} catch (Exception e) {
-			System.out.println("Erro ao classificar a transação: " + e.getMessage()t);
+			System.out.println("Erro ao classificar a transação: " + e.getMessage());
 		}
 	}
 }
